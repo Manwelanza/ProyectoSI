@@ -5,11 +5,13 @@ public class MovePlayer : MonoBehaviour {
 
     public float speed = 5f;
 
+    private Vector3 posicionInicial;
     private CharacterController control;
 
 	// Use this for initialization
 	void Start () {
         control = GetComponent<CharacterController> ();
+        posicionInicial = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -29,4 +31,17 @@ public class MovePlayer : MonoBehaviour {
         Vector3 movimiento = new Vector3(movX, 0, movZ);
         control.SimpleMove(movimiento * Time.deltaTime);
 	}
+
+    private void muere ()
+    {
+        transform.position = posicionInicial;
+    }
+
+    void OnCollisionEnter(Collision collider)
+    {
+        if (collider.collider.tag == "Bala" || collider.collider.tag == "Enemigo")
+        {
+            muere();
+        }
+    }
 }
