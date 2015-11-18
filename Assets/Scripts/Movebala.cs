@@ -21,5 +21,10 @@ public class Movebala : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+		if (collider.collider.tag == "Player" || collider.collider.tag == "Enemigo")
+		{
+			Destroy(this.gameObject);
+		}
     }
 }
