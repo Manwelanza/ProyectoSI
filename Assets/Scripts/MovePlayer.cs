@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using RAIN.Core;
 using System.Collections;
 
 public class MovePlayer : MonoBehaviour {
@@ -16,6 +17,7 @@ public class MovePlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        GameObject.Find("Enemigo").GetComponentInChildren<AIRig>().AI.Motor.UpdateMotionTransforms();
         float x = 0.0f;
         float z = 0.0f;
         if (Input.GetKey(KeyCode.D))
@@ -30,7 +32,8 @@ public class MovePlayer : MonoBehaviour {
         float movZ = z * speed;
         Vector3 movimiento = new Vector3(movX, 0, movZ);
         control.SimpleMove(movimiento * Time.deltaTime);
-	}
+        GameObject.Find("Enemigo").GetComponentInChildren<AIRig>().AI.Motor.UpdateMotionTransforms();
+    }
 
     private void muere ()
     {
