@@ -35,7 +35,7 @@ public class Enemigo : MonoBehaviour {
     {
         if (contador > delayDisparos)
         {
-            Instantiate(bala, naceBala.transform.position, Quaternion.);
+            Instantiate(bala, naceBala.transform.position, transform.rotation);
             contador = 0f;
         }
     }
@@ -44,7 +44,7 @@ public class Enemigo : MonoBehaviour {
     {
         if (collider.collider.tag == "Bala")
         {
-            muere();
+            //muere();
         }
     }
 }
