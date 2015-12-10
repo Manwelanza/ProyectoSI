@@ -32,17 +32,20 @@ public class Dispara : MonoBehaviour {
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    Instantiate(bala, disparador2.transform.position, Quaternion.Euler(new Vector3(-90, -90, 0)));
+                    //Instantiate(bala, disparador2.transform.position, Quaternion.Euler(new Vector3(-90, -90, 0)));
+					Instantiate(bala, disparador2.transform.position, disparador2.transform.rotation);
                     contadorDisparos = 0f;
                 }
                 else if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    Instantiate(bala, disparador3.transform.position, Quaternion.Euler(new Vector3 (0, 90, 0)));
+                    //Instantiate(bala, disparador3.transform.position, Quaternion.Euler(new Vector3 (0, 90, 0)));
+					Instantiate(bala, disparador3.transform.position, disparador3.transform.rotation);
                     contadorDisparos = 0f;
                 }
                 else if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    Instantiate(bala, disparador4.transform.position, Quaternion.Euler(new Vector3(-90, 0, 90)));
+                    //Instantiate(bala, disparador4.transform.position, Quaternion.Euler(new Vector3(-90, 0, 90)));
+					Instantiate(bala, disparador4.transform.position, disparador4.transform.rotation);
                     contadorDisparos = 0f;
                 }
             }

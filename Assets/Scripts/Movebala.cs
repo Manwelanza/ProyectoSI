@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movebala : MonoBehaviour {
 
-    public float speed = 5f;
+    public float speed = 0.05f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +12,7 @@ public class Movebala : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(transform.forward * Time.deltaTime * speed);
+		transform.Translate (0, 0, speed * Time.deltaTime);
 	}
 
     void OnCollisionEnter(Collision collider)

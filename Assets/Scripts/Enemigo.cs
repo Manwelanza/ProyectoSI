@@ -35,7 +35,8 @@ public class Enemigo : MonoBehaviour {
     {
         if (contador > delayDisparos)
         {
-            Instantiate(bala, naceBala.transform.position, transform.rotation);
+			Object clone = Instantiate(bala, naceBala.transform.position, naceBala.transform.rotation);
+			
             contador = 0f;
         }
     }
