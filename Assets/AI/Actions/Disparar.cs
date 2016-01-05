@@ -16,7 +16,7 @@ public class Disparar : RAINAction
     {
 		Enemigo enemigo;
 		for(int j = 0; j < GameObject.Find("Enemigos").GetComponentsInChildren<Enemigo>().Length; j++) {
-
+		
 			if(j == 0)
 				enemigo = GameObject.Find("Enemigo").GetComponentInChildren<Enemigo>();
 			else
