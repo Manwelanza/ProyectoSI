@@ -27,7 +27,7 @@ public class NavmeshGenerator : MonoBehaviour
 		// Unregister any navigation mesh we may already have (probably none if you are using this)
 		tRig.NavMesh.UnregisterNavigationGraph();
 		
-		tRig.NavMesh.StartCreatingContours(tRig, _threadCount);
+		tRig.NavMesh.StartCreatingContours(_threadCount);
 		while (tRig.NavMesh.Creating)
 		{
 			tRig.NavMesh.CreateContours();
