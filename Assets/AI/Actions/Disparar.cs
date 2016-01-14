@@ -14,7 +14,6 @@ public class Disparar : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-
 		ai.Body.GetComponent<Enemigo> ().dispara();
         return ActionResult.SUCCESS;
     }

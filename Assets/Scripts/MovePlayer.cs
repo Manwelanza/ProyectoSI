@@ -42,7 +42,7 @@ public class MovePlayer : MonoBehaviour {
 
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.collider.tag == "Bala" || collider.collider.tag == "Enemigo")
+        if (collider.collider.tag == "BalaEnemigo" || collider.collider.tag == "Enemigo")
         {
             muere();
         }
