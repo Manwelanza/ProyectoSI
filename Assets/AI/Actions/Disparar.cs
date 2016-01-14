@@ -14,17 +14,8 @@ public class Disparar : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		Enemigo enemigo;
-		for(int j = 0; j < GameObject.Find("Enemigos").GetComponentsInChildren<Enemigo>().Length; j++) {
-		
-			if(j == 0)
-				enemigo = GameObject.Find("Enemigo").GetComponentInChildren<Enemigo>();
-			else
-				enemigo = GameObject.Find("Enemigo (" + j + ")").GetComponentInChildren<Enemigo>();
 
-			enemigo.dispara();
-		}
-
+		ai.Body.GetComponent<Enemigo> ().dispara();
         return ActionResult.SUCCESS;
     }
 
