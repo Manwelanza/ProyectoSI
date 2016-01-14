@@ -46,6 +46,7 @@ public class Enemigo : MonoBehaviour {
         if (collider.collider.tag == "Bala")
         {
             muere();
+            GameObject.Find("Player").GetComponent<contador>().muereEnemigo();
         }
     }
 }

@@ -38,6 +38,7 @@ public class MovePlayer : MonoBehaviour {
     private void muere ()
     {
         transform.position = posicionInicial;
+        GetComponent<contador>().muereJugador();
     }
 
     void OnCollisionEnter(Collision collider)
