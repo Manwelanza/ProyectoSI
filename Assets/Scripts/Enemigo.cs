@@ -3,7 +3,7 @@ using RAIN.Core;
 using System.Collections;
 
 public class Enemigo : MonoBehaviour {
-
+	
     public GameObject bala;
     public GameObject naceBala;
     public float delayDisparos = 0.5f;
@@ -23,7 +23,7 @@ public class Enemigo : MonoBehaviour {
         contador += Time.deltaTime;
 	}
 
-    private void muere ()
+    public void muere ()
     {
         aiRig.AI.Motor.UpdateMotionTransforms();
         transform.position = posicionInicial;
@@ -46,7 +46,14 @@ public class Enemigo : MonoBehaviour {
         if (collider.collider.tag == "Bala")
         {
             muere();
-            GameObject.Find("Player").GetComponent<contador>().muereEnemigo();
+
+			GameObject player = GameObject.Find("Player");
+			/*
+			 * Codigo para reiniciar llegado a un limite de vidas, da problemas
+			if(player.GetComponent<contador>().getMuertesEnemigo() == vidasEnemigo)
+				player.GetComponent<contador>().restartGame();
+			*/
+			player.GetComponent<contador>().muereEnemigo();
         }
     }
 }

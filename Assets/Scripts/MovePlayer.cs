@@ -35,7 +35,7 @@ public class MovePlayer : MonoBehaviour {
         GameObject.Find("EnemigoSupp").GetComponentInChildren<AIRig>().AI.Motor.UpdateMotionTransforms();
     }
 
-    private void muere ()
+    public void muere ()
     {
         transform.position = posicionInicial;
         GetComponent<contador>().muereJugador();
@@ -46,6 +46,13 @@ public class MovePlayer : MonoBehaviour {
         if (collider.collider.tag == "BalaEnemigo" || collider.collider.tag == "Enemigo")
         {
             muere();
+
+			GameObject player = GameObject.Find("Player");
+			/*
+			 * Codigo para reiniciar llegado un limite de vidas, da problemas
+			if(player.GetComponent<contador>().getMuertesPlayer() == vidasPlayer)
+				player.GetComponent<contador>().restartGame();
+			*/
         }
     }
 }
