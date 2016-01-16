@@ -9,57 +9,79 @@ public class contador : MonoBehaviour {
     public Text contadorEnemigo;
     public Text contador2Enemigo;
 	public Text gameOver;
+    public Text reiniciar;
 
 	public int vidasPlayer = 2;
 	public int vidasEnemigo = 2;
 
     private int muertesPlayer = 0;
     private int muertesEnemigo = 0;
-
-	public int getMuertesPlayer() {
-		return muertesPlayer;
-	}
-
-	public int getMuertesEnemigo() {
-		return muertesEnemigo;
-	}
-
-	public void setMuertes(int _muertesPlayer, int _muertesEnemigo) {
-		muertesPlayer = _muertesPlayer;
-		muertesEnemigo = _muertesEnemigo;
-	}
+    private float time;
 
 	public void restartGame() {
+        muertesPlayer = -1;
+        GameObject.Find ("Player").GetComponent<MovePlayer> ().muere ();
+        Enemigo [] enemyComponents = GameObject.Find("Enemigos").GetComponentsInChildren<Enemigo> ();
+        for (int i = 0; i < enemyComponents.Length; i++)
+        {
+            muertesEnemigo = -1;
+            enemyComponents[i].muere();
+        }
 
-		setMuertes (0, 0);
-		GameObject.Find ("Player").GetComponent<MovePlayer> ().muere ();
-		Component [] enemyComponents = GameObject.Find ("Enemigos").GetComponentsInChildren<MovePlayer> ();
-		for (int i = 0; i < enemyComponents.Length; i++)
-			enemyComponents [i].GetComponent<MovePlayer> ().muere ();
-	}
+        GameObject [] balas = GameObject.FindGameObjectsWithTag("Bala");
+        for (int i = 0; i < balas.Length; i++)
+        {
+            GameObject.Destroy(balas[i]);
+        }
+        balas = GameObject.FindGameObjectsWithTag("BalaEnemigo");
+        for (int i = 0; i < balas.Length; i++)
+        {
+            GameObject.Destroy(balas[i]);
+        }
+
+
+        gameOver.text = "";
+        reiniciar.enabled = false;
+        Time.timeScale = time;
+    }
 
     // Use this for initialization
     void Start () {
-	
-	}
+        time = Time.timeScale;
+        reiniciar.enabled = false;
+    }
+
+    void Update ()
+    {
+        if (Time.timeScale == 0 && Input.GetKey(KeyCode.R))
+        {
+            restartGame();
+        }
+    }
 	
 	public void muereJugador ()
     {
         muertesPlayer++;
         contadorEnemigo.text = muertesPlayer.ToString();
         string aux = "";
-        for (int i = 1; i <= muertesPlayer; i++)
+        if (muertesPlayer > 0)
         {
-            aux += "|";
-            if (i%5 == 0)
-                aux += "\n";
+            for (int i = 1; i <= muertesPlayer; i++)
+            {
+                aux += "|";
+                if (i % 5 == 0)
+                    aux += "\n";
+            }
         }
         contador2Enemigo.text = aux;
 
 		if (muertesPlayer == vidasPlayer) {
-			Time.timeScale = 0;
 			gameOver.text = "Game Over";
-		}
+            gameOver.color = Color.red;
+            gameOver.font = Resources.Load<Font>("fonts/BloodBlocks Project");
+            reiniciar.enabled = true;
+            Time.timeScale = 0;
+        }
     }
 
     public void muereEnemigo()
@@ -67,17 +89,41 @@ public class contador : MonoBehaviour {
         muertesEnemigo++;
         contadorPlayer.text = muertesEnemigo.ToString();
         string aux = "";
-        for (int i = 1; i <= muertesEnemigo; i++)
+        if (muertesEnemigo > 0)
         {
-            aux += "|";
-            if (i%5 == 0)
-                aux += "\n";
+            for (int i = 1; i <= muertesEnemigo; i++)
+            {
+                aux += "|";
+                if (i % 5 == 0)
+                    aux += "\n";
+            }
         }
+
         contador2Player.text = aux;
 
 		if (muertesEnemigo == vidasEnemigo) {
-			Time.timeScale = 0;
 			gameOver.text = "Victoria";
-		}
+            gameOver.color = Color.green;
+            gameOver.font = Resources.Load<Font>("fonts/OpenSansBold");
+            reiniciar.enabled = true;
+            Time.timeScale = 0;
+        }
     }
+
+    public void pausePressed ()
+    {
+        gameOver.text = "Pause";
+        gameOver.color = Color.black;
+        gameOver.font = Resources.Load<Font>("fonts/OpenSansBold");
+        reiniciar.enabled = true;
+        Time.timeScale = 0;
+    }
+
+    public void pauseUnPressed ()
+    {
+        Time.timeScale = time;
+        gameOver.text = "";
+        reiniciar.enabled = false;
+    }
+
 }

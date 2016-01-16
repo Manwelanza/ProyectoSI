@@ -17,6 +17,17 @@ public class MovePlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
+        {
+            GetComponent<contador>().pauseUnPressed();
+
+        }
+
+        else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale != 0)
+        {
+            GetComponent<contador>().pausePressed();
+        }
+
         GameObject.Find("EnemigoSupp").GetComponentInChildren<AIRig>().AI.Motor.UpdateMotionTransforms();
         float x = 0.0f;
         float z = 0.0f;
@@ -45,14 +56,15 @@ public class MovePlayer : MonoBehaviour {
     {
         if (collider.collider.tag == "BalaEnemigo" || collider.collider.tag == "Enemigo")
         {
-            muere();
+            muere();		
+        }
+    }
 
-			GameObject player = GameObject.Find("Player");
-			/*
-			 * Codigo para reiniciar llegado un limite de vidas, da problemas
-			if(player.GetComponent<contador>().getMuertesPlayer() == vidasPlayer)
-				player.GetComponent<contador>().restartGame();
-			*/
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "BalaSniper")
+        {
+            muere();
         }
     }
 }

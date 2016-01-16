@@ -29,6 +29,7 @@ public class Enemigo : MonoBehaviour {
         transform.position = posicionInicial;
         aiRig.AI.Motor.Move();
         aiRig.AI.Motor.UpdateMotionTransforms();
+        GameObject.Find("Player").GetComponent<contador>().muereEnemigo();
     }
 
     public void dispara ()
@@ -46,14 +47,6 @@ public class Enemigo : MonoBehaviour {
         if (collider.collider.tag == "Bala")
         {
             muere();
-
-			GameObject player = GameObject.Find("Player");
-			/*
-			 * Codigo para reiniciar llegado a un limite de vidas, da problemas
-			if(player.GetComponent<contador>().getMuertesEnemigo() == vidasEnemigo)
-				player.GetComponent<contador>().restartGame();
-			*/
-			player.GetComponent<contador>().muereEnemigo();
         }
     }
 }
