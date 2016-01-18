@@ -25,24 +25,24 @@ public class Dispara : MonoBehaviour {
         {
             if (contadorDisparos > delayDisparos)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("VerticalRight") < -0.5)
                 {
                     Instantiate(bala, disparador1.transform.position, disparador1.transform.rotation);
                     contadorDisparos = 0f;
                 }
-                else if (Input.GetKey(KeyCode.RightArrow))
+                else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("HorizontalRight") > 0.5)
                 {
                     //Instantiate(bala, disparador2.transform.position, Quaternion.Euler(new Vector3(-90, -90, 0)));
 					Instantiate(bala, disparador2.transform.position, disparador2.transform.rotation);
                     contadorDisparos = 0f;
                 }
-                else if (Input.GetKey(KeyCode.DownArrow))
+				else if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("VerticalRight") > 0.5)
                 {
                     //Instantiate(bala, disparador3.transform.position, Quaternion.Euler(new Vector3 (0, 90, 0)));
 					Instantiate(bala, disparador3.transform.position, disparador3.transform.rotation);
                     contadorDisparos = 0f;
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow))
+				else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("HorizontalRight") < -0.5)
                 {
                     //Instantiate(bala, disparador4.transform.position, Quaternion.Euler(new Vector3(-90, 0, 90)));
 					Instantiate(bala, disparador4.transform.position, disparador4.transform.rotation);
