@@ -38,7 +38,7 @@ public class Movebala : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Pared")
+        if (other.tag == "Pared" || other.tag == "Player")
         {
             Destroy(this.gameObject);
         }

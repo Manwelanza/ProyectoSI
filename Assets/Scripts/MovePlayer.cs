@@ -10,6 +10,8 @@ public class MovePlayer : MonoBehaviour {
     private Vector3 posicionInicial;
     private CharacterController control;
 
+	private bool estadoPausa = false;
+
 	// Use this for initialization
 	void Start () {
         control = GetComponent<CharacterController> ();
@@ -18,14 +20,15 @@ public class MovePlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && Time.timeScale == 0)
+		if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && estadoPausa)
         {
+			estadoPausa = false;
             GetComponent<contador>().pauseUnPressed();
-
         }
 
-        else if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && Time.timeScale != 0)
+        else if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && !estadoPausa)
         {
+			estadoPausa = true;
             GetComponent<contador>().pausePressed();
         }
 

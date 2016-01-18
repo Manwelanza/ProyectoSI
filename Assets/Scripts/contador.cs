@@ -10,6 +10,7 @@ public class contador : MonoBehaviour {
     public Text contador2Enemigo;
 	public Text gameOver;
     public Text reiniciar;
+	public Text modoInfinito;
 
 	public int vidasPlayer = 2;
 	public int vidasEnemigo = 2;
@@ -42,6 +43,7 @@ public class contador : MonoBehaviour {
 
         gameOver.text = "";
         reiniciar.enabled = false;
+		modoInfinito.enabled = false;
         Time.timeScale = time;
     }
 
@@ -49,6 +51,7 @@ public class contador : MonoBehaviour {
     void Start () {
         time = Time.timeScale;
         reiniciar.enabled = false;
+		modoInfinito.enabled = false;
     }
 
     void Update ()
@@ -79,7 +82,7 @@ public class contador : MonoBehaviour {
 			gameOver.text = "Game Over";
             gameOver.color = Color.red;
             gameOver.font = Resources.Load<Font>("fonts/BloodBlocks Project");
-            reiniciar.enabled = true;
+            modoInfinito.enabled = true;
             Time.timeScale = 0;
         }
     }
@@ -105,7 +108,7 @@ public class contador : MonoBehaviour {
 			gameOver.text = "Victoria";
             gameOver.color = Color.green;
             gameOver.font = Resources.Load<Font>("fonts/OpenSansBold");
-            reiniciar.enabled = true;
+            modoInfinito.enabled = true;
             Time.timeScale = 0;
         }
     }
