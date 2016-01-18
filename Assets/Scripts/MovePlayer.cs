@@ -1,7 +1,6 @@
 using UnityEngine;
 using RAIN.Core;
 using System.Collections;
-using GamepadInput;
 using System;
 
 public class MovePlayer : MonoBehaviour {
