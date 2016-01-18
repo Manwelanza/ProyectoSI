@@ -53,7 +53,7 @@ public class contador : MonoBehaviour {
 
     void Update ()
     {
-        if (Time.timeScale == 0 && Input.GetKey(KeyCode.R))
+        if (Time.timeScale == 0 && (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton6)))
         {
             restartGame();
         }

@@ -18,13 +18,13 @@ public class MovePlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
+		if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && Time.timeScale == 0)
         {
             GetComponent<contador>().pauseUnPressed();
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale != 0)
+        else if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.JoystickButton7)) && Time.timeScale != 0)
         {
             GetComponent<contador>().pausePressed();
         }
