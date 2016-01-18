@@ -119,6 +119,7 @@ public class contador : MonoBehaviour {
         gameOver.color = Color.black;
         gameOver.font = Resources.Load<Font>("fonts/OpenSansBold");
         reiniciar.enabled = true;
+		modoInfinito.enabled = false;
         Time.timeScale = 0;
     }
 
@@ -126,6 +127,7 @@ public class contador : MonoBehaviour {
     {
         Time.timeScale = time;
         gameOver.text = "";
+		modoInfinito.enabled = false;
         reiniciar.enabled = false;
     }
 
